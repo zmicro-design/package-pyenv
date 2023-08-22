@@ -4,6 +4,8 @@ export PACKAGE_NAME="pyenv"
 import "$ZMICRO_PACKAGES_PATH/$PACKAGE_NAME/config"
 import "$ZMICRO_PACKAGES_PATH/$PACKAGE_NAME/core"
 
+export PATH=$HOME/.pyenv/bin:$PATH
+
 help() {
   echo "Usage:"
   echo "  zmicro pyenv <args ...>"
