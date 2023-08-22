@@ -122,6 +122,16 @@ install() {
   # log::info "[$(timestamp)][package][$name] installing ..."
   # os::install $source_bin_file $usr_bin_dir $name
 
+  if [ -d "$HOME/.pyenv" ]; then
+    os::inquirer value "yesno" "Found pyenv at \$HOME/.pyenv, are you sure to remove old pyenv ?" true "No"
+    if [ "$value" = "true" ]; then
+      rm -rf $HOME/.pyenv
+    else
+      log::info "[$(timestamp)][package][$name] skip install pyenv."
+      return 1
+    fi
+  fi
+
   curl https://pyenv.run | bash
   if [ "$?" != "0" ]; then
     log::error "[$(timestamp)][package][$name] failed to install pyenv."
@@ -132,7 +142,7 @@ install() {
   local envs=$(
     cat <<-END
 export PYENV_ROOT=\$HOME/.pyenv
-export PATH=\$PYENV_ROOT/shims:\$PATH
+export PATH=\$PYENV_ROOT/bin:\$PYENV_ROOT/shims:\$PATH
 END
   )
   config::profile "# ZMICRO_PYENV" "$envs"

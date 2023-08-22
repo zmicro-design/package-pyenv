@@ -1,5 +1,5 @@
 NAME=pyenv
-VERSION=v0.0.1
+VERSION=v0.0.2
 MODULE=package
 DESCRIPTION="Simple Python version management"
 HOMEPAGE="https://github.com/pyenv/pyenv"
