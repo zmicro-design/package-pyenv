@@ -143,6 +143,8 @@ install() {
     cat <<-END
 export PYENV_ROOT=\$HOME/.pyenv
 export PATH=\$PYENV_ROOT/bin:\$PYENV_ROOT/shims:\$PATH
+# Electron Builder - https://github.com/electron-userland/electron-builder/issues/6606
+export PYTHON_PATH=\$PYENV_ROOT/shims/python
 END
   )
   config::profile "# ZMICRO_PYENV" "$envs"
